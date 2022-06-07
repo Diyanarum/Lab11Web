@@ -139,7 +139,7 @@ public function about()
 
 Pada dasarnya layout web dengan css dapat diimplamentasikan dengan mudah pada codeigniter. Hanya saja yang perlu diketahui adalah, pada Codeigniter 4 file yang menyimpan asset css dan javascript terletak pada direktori public.
 
-Pertama, buatlah file css pada direktori public dengan nama style.css lalu buat juga folder pada direktori view yang didalam diisi dengan file header.php dan juga footer.php
+Pertama, buatlah file css pada direktori public dengan nama style.css lalu buat juga folder pada direktori view yang didalamnya diisi dengan file header.php dan juga footer.php
 
 Isi bagian header dengan kode berikut.
 ```php
