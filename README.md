@@ -165,7 +165,7 @@ Isi bagian header dengan kode berikut.
     <section id="main">
 ```
 
-Dana isi bagian footer dengan kode berikut.
+Dan isi bagian footer dengan kode berikut.
 ```php
 </section>
     <aside id="sidebar">
