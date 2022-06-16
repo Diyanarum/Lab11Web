@@ -5,6 +5,8 @@ Diyan Arum Maheswari (312010133)
 Teknik Informatika - UNIVERSITAS PELITA BANGSA
 ______________________________________________
 
+# PRAKTIKUM 11
+
 ## MEMBUAT FOLDER BARU
 
 Pertama, buatlah folder baru dengan nama Lab11_php_ci pada root directory web server(c:xampp/htdocs/Lab11Web)
@@ -212,6 +214,89 @@ Maka ketika halaman web tersebut kalian refresh, kalian akan mendapat tampilan s
 ## PERTANYAAN DAN TUGAS
 
 Lengkapi kode program untuk menu lainnya yang ada pada Controller Page, sehingga semua link pada navigasi header dapat menampilkan tampilan dengan layout yang sama.
+
+
+# PRAKTIKUM 12
+
+## MEMBUAT DATABASE : STUDI KASUS DATA ARTIKEL
+
+Kalian bisa langsung saja membuat database pada PHPMyAdmin dengan mengklik tombol MySQL yang ada diatas kemudian masukan kode dibawah kemudian klik kirim.
+
+```mysql
+CREATE DATABASE lab_ci4;
+```
+
+![menambahkan_gambar](img/DATABASE.png)
+
+## PEMBUATAN TABEL 
+
+![menambahkan_gambar](img/MEMBUAT%20TABEL.png)
+
+Setelah database berhasil dibuat. Selanjutnya proses pembuatan tabel pada database tersebut. Pembuatannya sama dengan sebelumnya, kalian hanya perlu menekan tombol MySQL pada Database sebelumnya kemudian masukan kode berikut:
+
+```mysql
+CREATE TABLE Artikel (
+ID INT(11) auto_increment,
+Judul VARCHAR(200) NOT NULL,
+Isi TEXT,
+Gambar VARCHAR(200),
+status TINYINT(1) DEFAULT 0,
+Slug VARCHAR(200),
+PRIMARY KEY(ID)
+);
+```
+
+## KONFIGURASI KONEKSI DATABASE
+
+Konfigurasi dapat dilakukan dengan dua cara. Pertama, pada dua file app/config/database.php atau yang kedua menggunakan file .env seperti yang akan saya gunakan.
+
+![menambahkan_gambar](img/KONFIG%20KONEKSI.png)
+
+## MEMBUAT MODEL
+
+Pembuatan model dilakukan untuk memproses artikel nantinya. Untuk pembuatan modelnya cukup dengan membuat file baru pada direktori app/models dengan nama ArtikelModel.php kemudian isi dengan kode berikut.
+
+```php
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class ArtikelModel extends Model
+{
+    protected $table = 'artikel';
+    protected $primaryKey = 'id';
+    protected $useAutoIncrement = true;
+    protected $allowedFields = ['judul', 'isi', 'status', 'slug', 'gambar'];
+}
+```
+
+## MEMBUAT CONTROLLER
+
+Buatlah kontroller baru pada direktori app/Controllers dengan nama Artikel.php kemudian masukan kode berikut.
+
+```php
+<?php
+
+namespace App\Controllers;
+
+use App\Models\ArtikelModel;
+
+class Artikel extends BaseController
+{
+
+    public function index()
+    {
+        $title = 'Daftar Artikel';
+        $model = new ArtikelModel();
+        $artikel = $model->findAll();
+        return view('artikel/index', compact('artikel', 'title'));
+    }
+}
+```
+
+## PEMBUATAN VIEW
 
 
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!
