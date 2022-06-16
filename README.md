@@ -265,10 +265,10 @@ use CodeIgniter\Model;
 
 class ArtikelModel extends Model
 {
-    protected $table = 'artikel';
-    protected $primaryKey = 'id';
+    protected $table = 'Artikel';
+    protected $primaryKey = 'ID';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['judul', 'isi', 'status', 'slug', 'gambar'];
+    protected $allowedFields = ['Judul', 'Isi', 'status', 'Slug', 'Gambar'];
 }
 ```
 
