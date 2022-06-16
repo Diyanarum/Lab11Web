@@ -226,11 +226,10 @@ Kalian bisa langsung saja membuat database pada PHPMyAdmin dengan mengklik tombo
 CREATE DATABASE lab_ci4;
 ```
 
-![menambahkan_gambar](img/DATABASE.png)
-
+![menambahkan_gambar](img/DATABASE%2012.png
 ## PEMBUATAN TABEL 
 
-![menambahkan_gambar](img/MEMBUAT%20TABEL.png)
+![menambahkan_gambar](img/MEMBUAT%20TABEL%2012.png)
 
 Setelah database berhasil dibuat. Selanjutnya proses pembuatan tabel pada database tersebut. Pembuatannya sama dengan sebelumnya, kalian hanya perlu menekan tombol MySQL pada Database sebelumnya kemudian masukan kode berikut:
 
@@ -250,7 +249,7 @@ PRIMARY KEY(ID)
 
 Konfigurasi dapat dilakukan dengan dua cara. Pertama, pada dua file app/config/database.php atau yang kedua menggunakan file .env seperti yang akan saya gunakan.
 
-![menambahkan_gambar](img/KONFIG%20KONEKSI.png)
+![menambahkan_gambar](img/KONFIG%20KONEKSI%2012.png)
 
 ## MEMBUAT MODEL
 
