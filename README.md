@@ -226,7 +226,8 @@ Kalian bisa langsung saja membuat database pada PHPMyAdmin dengan mengklik tombo
 CREATE DATABASE lab_ci4;
 ```
 
-![menambahkan_gambar](img/DATABASE%2012.png
+![menambahkan_gambar](img/DATABASE%2012.png)
+
 ## PEMBUATAN TABEL 
 
 ![menambahkan_gambar](img/MEMBUAT%20TABEL%2012.png)
