@@ -248,7 +248,7 @@ CREATE TABLE artikel (
 
 ## KONFIGURASI KONEKSI DATABASE
 
-Konfigurasi dapat dilakukan dengan dua cara. Pertama, pada dua file app/config/database.php atau yang kedua menggunakan file .env seperti yang akan saya gunakan.
+Konfigurasi dapat dilakukan dengan dua cara. Pertama, pada dua file app/config/database.php atau yang kedua menggunakan file .env seperti yang akan saya gunakan dengan menghapus tanda # pada bagian database seperti dibawah.
 
 ![menambahkan_gambar](img/KONFIG%20KONEKSI%2012.png)
 
@@ -297,6 +297,94 @@ class Artikel extends BaseController
 ```
 
 ## PEMBUATAN VIEW
+
+Buatlah direktori baru dengan nama artikel pada direktori app/views yang kemudian didalamnya buatlah file dengan nama index.php yang diisi dengan kode berikut:
+
+```php
+<?= $this->include('template/header'); ?>
+
+<?php if($artikel): foreach($artikel as $row): ?>
+<article class="entry">
+    <h2><a href="<?= base_url('/artikel/' . $row['slug']);?>"><?=$row['judul']; ?></a></h2>
+    <img src="<?= base_url('/gambar/' . $row['gambar']);?>" alt="<?=$row['judul']; ?>">
+    <p><?= substr($row['isi'], 0, 200); ?></p>
+</article>
+<hr class="divider" />
+<?php endforeach; else: ?>
+<article class="entry">
+    <h2>Belum ada data.</h2>
+</article>
+<?php endif; ?>
+
+<?= $this->include('template/footer'); ?>
+```
+
+Setelahnya refresh kembali browsernya dan kalian akan mendapatkan tampilan seperti gambar dibawah ini.
+
+
+
+Tampilan diatas belum memiliki satupun data yang ditampilkan, jadi cobalah tambahkan beberapa data pada database agar dapat ditampilkan datanya. Berikut kode yang digunakan:
+
+```php
+INSERT INTO artikel (judul, isi, slug) VALUE
+('Artikel pertama', 'Lorem Ipsum adalah contoh teks atau dummy dalam industri percetakan dan penataan huruf atau typesetting. Lorem Ipsum telah menjadi standar contoh teks sejak tahun 1500an, saat seorang tukang cetak yang tidak dikenal mengambil sebuah kumpulan teks dan mengacaknya untuk menjadi sebuah
+buku contoh huruf.', 'artikel-pertama'), ('Artikel kedua', 'Tidak seperti anggapan banyak orang, Lorem Ipsum bukanlah
+teks-teks yang diacak. Ia berakar dari sebuah naskah sastra latin klasik dari era 45 sebelum masehi, hingga bisa dipastikan usianya telah mencapai lebih dari 2000 tahun.', 'artikel-kedua');
+```
+
+Refresh kembali browsernya dan akan menampilkan tampilan seperti ini.
+
+
+
+## MEMBUAT TAMPILAN DETAIL ARTIKEL
+
+Tampilan pada saat judul berita di klik maka akan diarahkan ke halaman yang berbeda. Tambahkan fungsi baru pada Controller Artikel dengan nama view(). Kemudian tambahkan kode berikut.
+
+```php
+public function view($slug)
+    {
+        $model = new ArtikelModel();
+        $artikel = $model->where(['slug' => $slug])->first();
+        
+        // Menampilkan error apabila data tidak ada.
+        if (!$artikel)
+        {
+            throw PageNotFoundException::forPageNotFound();
+        }
+        $title = $artikel['judul'];
+        return view('artikel/detail', compact('artikel', 'title'));
+    }
+```
+
+## MEMBUAT VIEW DETAIL
+
+Buat view baru untuk halaman detail dengan nama app/views/artikel/detail.php dengan memasukan kode berikut.
+
+```php
+<?= $this->include('template/header'); ?>
+
+<article class="entry">
+    <h2><?= $artikel['judul']; ?></h2>
+    <img src="<?= base_url('/gambar/' . $artikel['gambar']);?>" alt="<?=$artikel['judul']; ?>">
+    <p><?= $artikel['isi']; ?></p>
+</article>
+
+<?= $this->include('template/footer'); ?>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!
