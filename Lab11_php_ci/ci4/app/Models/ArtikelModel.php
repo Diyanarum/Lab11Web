@@ -6,8 +6,9 @@ use CodeIgniter\Model;
 
 class ArtikelModel extends Model
 {
-    protected $table = 'Artikel';
-    protected $primaryKey = 'ID';
+    protected $table = 'artikel';
+    protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
-    protected $allowedFields = ['Judul', 'Isi', 'status', 'Slug', 'Gambar'];
+    protected $allowedFields = ['judul', 'isi', 'status', 'slug', 'gambar'];
+
 }

@@ -235,14 +235,14 @@ CREATE DATABASE lab_ci4;
 Setelah database berhasil dibuat. Selanjutnya proses pembuatan tabel pada database tersebut. Pembuatannya sama dengan sebelumnya, kalian hanya perlu menekan tombol MySQL pada Database sebelumnya kemudian masukan kode berikut:
 
 ```mysql
-CREATE TABLE Artikel (
-ID INT(11) auto_increment,
-Judul VARCHAR(200) NOT NULL,
-Isi TEXT,
-Gambar VARCHAR(200),
-status TINYINT(1) DEFAULT 0,
-Slug VARCHAR(200),
-PRIMARY KEY(ID)
+CREATE TABLE artikel (
+    id INT(11) auto_increment,
+    judul VARCHAR(200) NOT NULL,
+    isi TEXT,
+    gambar VARCHAR(200),
+    status TINYINT(1) DEFAULT 0,
+    slug VARCHAR(200),
+    PRIMARY KEY(id)
 );
 ```
 
@@ -266,7 +266,7 @@ use CodeIgniter\Model;
 class ArtikelModel extends Model
 {
     protected $table = 'Artikel';
-    protected $primaryKey = 'ID';
+    protected $primaryKey = 'id';
     protected $useAutoIncrement = true;
     protected $allowedFields = ['Judul', 'Isi', 'status', 'Slug', 'Gambar'];
 }

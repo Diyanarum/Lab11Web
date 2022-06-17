@@ -6,12 +6,11 @@ use App\Models\ArtikelModel;
 
 class Artikel extends BaseController
 {
-
-    public function index()
+    public function index() 
     {
-        $title = 'Daftar Artikel';
-        $model = new ArtikelModel();
-        $artikel = $model->findAll();
-        return view('artikel/index', compact('artikel', 'title'));
+    $title = 'Daftar Artikel';
+    $model = new ArtikelModel();
+    $artikel = $model->findAll();
+    return view('artikel/index', compact('artikel', 'title'));
     }
 }
