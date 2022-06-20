@@ -584,4 +584,188 @@ Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan impr
 ![menambahkan_gambar](img/ADMIN%2012.png)
 
 
+# PRAKTIKUM 13
+
+## MEMBUAT TABEL : USER LOGIN
+
+![menambahkan_gambar](img/BUAT%20TABEL%2013.png)
+
+Kalian bisa langsung saja membuat sebuah tabel pada PHPMyAdmin dengan mengklik tombol MySQL yang ada diatas kemudian masukan kode dibawah kemudian klik kirim.
+
+```mysql
+CREATE TABLE user (
+    id INT(11) auto_increment,
+    username VARCHAR(200) NOT NULL,
+    useremail VARCHAR(200),
+    userpassword VARCHAR(200),
+    PRIMARY KEY(id)
+);
+```
+
+## MEMBUAT MODEL USER
+
+Selanjutnya buatlah model untuk memproses data login dengan membuat sebuah file baru pada direktori app/Models dengan nama UserModel.php yang diisi dengan kode berikut.
+
+```php
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class UserModel extends Model
+{
+    protected $table = 'user';
+    protected $primaryKey = 'id';
+    protected $useAutoIncrement = true;
+    protected $allowedFields = ['username', 'useremail', 'userpassword'];
+}
+```
+
+## MEMBUAT CONTROLLER USER
+
+Buatlah controller baru dengan nama User.php pada direktori app/Controllers. Kemudian tambahkan method index() untuk menampilkan daftar user dan method login() untuk proses login dengan memasukan kode berikut.
+
+```php
+<?php
+
+namespace App\Controllers;
+
+use App\Models\UserModel;
+
+class User extends BaseController
+{
+    public function index()
+    {
+        $title = 'Daftar User';
+        $model = new UserModel();
+        $users = $model->findAll();
+        return view('user/index', compact('users', 'title'));
+    }
+
+    public function login()
+    {
+        helper(['form']);
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+        if (!$email)
+        {
+            return view('user/login');
+        }
+
+        $session = session();
+        $model = new UserModel();
+        $login = $model->where('useremail', $email)->first();
+        if ($login)
+        {
+            $pass = $login['userpassword'];
+            if (password_verify($password, $pass))
+            {
+                $login_data = [
+                    'user_id' => $login['id'],
+                    'user_name' => $login['username'],
+                    'user_email' => $login['useremail'],
+                    'logged_in' => TRUE,
+                ];
+                $session->set($login_data);
+                return redirect('admin/artikel');
+            }
+            else
+            {
+                $session->setFlashdata("flash_msg", "Password salah.");
+                return redirect()->to('/user/login');
+            }
+        }
+        else
+        {
+            $session->setFlashdata("flash_msg", "email tidak terdaftar.");
+            return redirect()->to('/user/login');
+        }
+    }
+}
+```
+
+## MEMBUAT VIEW LOGIN
+
+Buatlah direktori baru dengan nama user pada direktori app/views, kemudian buatlah sebuah file baru dengan nama login.php menggunakan kode berikut.
+
+```php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="<?= base_url('/style.css');?>">
+</head>
+<body>
+    <div id="login-wrapper">
+        <h1>Sign In</h1>
+        <?php if(session()->getFlashdata('flash_msg')):?>
+            <div class="alert alert-danger"><?=
+session()->getFlashdata('flash_msg') ?></div>
+        <?php endif;?>
+        <form action="" method="post">
+            <div class="mb-3">
+                <label for="InputForEmail" class="form-label">Email
+address</label>
+                <input type="email" name="email" class="form-control"
+id="InputForEmail" value="<?= set_value('email') ?>">
+            </div>
+            <div class="mb-3">
+                <label for="InputForPassword"
+class="form-label">Password</label>
+                    <input type="password" name="password"
+class="form-control" id="InputForPassword">
+                </div>
+                <button type="submit" class="btn
+btn-primary">Login</button>
+            </form>
+    </div>
+</body>
+</html>
+```
+
+## MEMBUAT DATABASE SEEDER
+
+Database ini digunakan untuk membuat data dummy. Untuk mencobanya kita perlu memasukan data user dan password kedalam database. Untuk itu buatlah database seeder untuk tabel user. Bukalah CLI kemudia tulis perintah berikut.
+
+```
+php spark make:seeder UserSeeder
+```
+![menambahkan_gambar](img/DATABASE%20SEEDER%2013.png)
+
+Selanjutnya, bukalah file UserSeeder.php yang berada pada direktori app/Database/Seeds/UserSeeder.php kemudian isi dengan kode berikut ini.
+
+```php
+<?php
+
+namespace App\Database\Seeds;
+
+use CodeIgniter\Database\Seeder;
+
+class UserSeeder extends Seeder
+{
+    public function run()
+    {
+        $model = model('UserModel');
+        $model->insert([
+            'username' => 'admin',
+            'useremail' => 'admin@email.com',
+            'userpassword' => password_hash('admin123', PASSWORD_DEFAULT),
+        ]);
+    }
+}
+```
+
+Selanjutnya buka kembali CLI dan ketikan perintah berikut.
+
+```
+php spark db:seed UserSeeder
+```
+
+
+
+
+
+
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!
