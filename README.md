@@ -811,7 +811,7 @@ Bukalah URL dengan alamat http://localhost:8080/user/login dan ketika alamat ter
 
 Setelah mendapat tampilan diatas, loginlah menggunakan email adress dan password yang sudah disetting sebelumnya dan inilah tampilan yang dihasilkan ketika kalian sudah berhasil login.
 
-![menambahkan_gambar](img/LOGIN%2013.png)
+![menambahkan_gambar](img/ADMIN%2012.png)
 
 ## FUNGSI LOGOUT
 
@@ -829,6 +829,6 @@ Tambahkanlah method logout pada Controller User seperti berikut:
 
 Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.
 
-![menambahkan_gambar](img/LOGIN%2013.png)
+![menambahkan_gambar](img/ADMIN%2012.png)
 
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!
