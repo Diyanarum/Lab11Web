@@ -211,11 +211,6 @@ Maka ketika halaman web tersebut kalian refresh, kalian akan mendapat tampilan s
 ![menambahkan_gambar](img/LAYOUT%20WEB.png)
 
 
-## PERTANYAAN DAN TUGAS
-
-Lengkapi kode program untuk menu lainnya yang ada pada Controller Page, sehingga semua link pada navigasi header dapat menampilkan tampilan dengan layout yang sama.
-
-
 # PRAKTIKUM 12
 
 ## MEMBUAT DATABASE : STUDI KASUS DATA ARTIKEL
