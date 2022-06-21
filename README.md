@@ -805,7 +805,11 @@ Setelahnya buka file app/Config/Routes.php dan sesuaikanlah kodenya seperti gamb
 
 ## PERCOBAAN AKSES MENU ADMIN
 
-Bukalah URL dengan alamat http://localhost:8080/index.php/user/login dan ketika alamat tersebut diakses maka akan muncul tampilan halaman login seperti berikut.
+Bukalah URL dengan alamat http://localhost:8080/user/login dan ketika alamat tersebut diakses maka akan muncul tampilan halaman login seperti berikut.
+
+![menambahkan_gambar](img/COBA%20AKSES%2013.png)
+
+Setelah mendapat tampilan diatas, loginlah menggunakan email adress dan password yang sudah disetting sebelumnya dan inilah tampilan yang dihasilkan ketika kalian sudah berhasil login.
 
 ![menambahkan_gambar](img/LOGIN%2013.png)
 
