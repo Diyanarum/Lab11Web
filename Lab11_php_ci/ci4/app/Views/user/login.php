@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="<?= base_url('/style.css');?>">
+    <link rel="stylesheet" href="<?= base_url('/user.css');?>">
 </head>
 <body>
     <div id="login-wrapper">
@@ -15,7 +15,7 @@ session()->getFlashdata('flash_msg') ?></div>
         <form action="" method="post">
             <div class="mb-3">
                 <label for="InputForEmail" class="form-label">Email
-address</label>
+Address</label>
                 <input type="email" name="email" class="form-control"
 id="InputForEmail" value="<?= set_value('email') ?>">
             </div>

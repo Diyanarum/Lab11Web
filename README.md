@@ -763,9 +763,73 @@ Selanjutnya buka kembali CLI dan ketikan perintah berikut.
 php spark db:seed UserSeeder
 ```
 
+Setelah menambahkan perintah tersebut bukalah browser untuk melakukan pengecekan dengan menggunakan URL http://localhost:8080/user/login seperti inilah tampilan yang dihasilkan.
+
+![menambahkan_gambar](img/LOGIN%2013.png)
 
 
+## MENAMBAHKAN AUTH FILTER
 
+Untuk halaman admin selanjutnya buatlah file baru dengan nama Auth.php pada direktori app/Filters. Kemudian tambahkan kode berikut ini.
 
+```php
+<?php namespace App\Filters;
+
+use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\ResponseInterface;
+use CodeIgniter\Filters\FilterInterface;
+
+class Auth implements FilterInterface
+{
+    public function before(RequestInterface $request, $arguments = null)
+    {
+        // jika user belum login
+        if(! session()->get('logged_in')){
+            // maka redirct ke halaman login
+            return redirect()->to('/user/login');
+        }
+    }
+
+    public function after(RequestInterface $request, ResponseInterface
+$response, $arguments = null)
+    {
+        // Do something here
+    }
+}
+```
+
+Selanjutnya bukalah file app/config/Filters.php kemudian tambahkan kode berikut ke dalamnya.
+
+```php
+'auth' => App\Filters\Auth::class
+```
+
+Setelahnya buka file app/Config/Routes.php dan sesuaikanlah kodenya seperti gambar dibawah.
+
+![menambahkan_gambar](img/SESUAIKAN%20KODE%2013.png)
+
+## PERCOBAAN AKSES MENU ADMIN
+
+Bukalah URL dengan alamat http://localhost:8080/index.php/user/login dan ketika alamat tersebut diakses maka akan muncul tampilan halaman login seperti berikut.
+
+![menambahkan_gambar](img/LOGIN%2013.png)
+
+## FUNGSI LOGOUT
+
+Tambahkanlah method logout pada Controller User seperti berikut:
+
+```php
+    public function logout()
+    {
+        session()->destroy();
+        return redirect()->to('/user/login');
+    }
+```
+
+# PERTANYAAN DAN TUGAS
+
+Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.
+
+![menambahkan_gambar](img/LOGIN%2013.png)
 
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!
