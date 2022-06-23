@@ -835,7 +835,7 @@ Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan impr
 # PRAKTIKUM 14 
 # PAGINATION DAN PENCARIAN
 
-## PEMBUATAN PAGNATION
+## PEMBUATAN PAGINATION
 
 Pagination itu sendiri merupakan proses yang digunakan untuk membatasi tampilan yang panjang dari data yang banyak pada sebuah website. Fungsi pagination juga ialah memecah tampilan menjadi beberapa halaman tergantung banyaknya data yang akan ditampilkan pada setiap halaman yang mana fungsi tersebut sudah tersedia di dalam Library pada Codeigniter 4.
 
