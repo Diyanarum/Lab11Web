@@ -168,6 +168,7 @@ h2{
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-radius: .25rem;
+}
 
 .pagination > li > a,
 .pagination > li > span {
@@ -176,7 +177,7 @@ h2{
     padding: .5rem .75rem;
     margin-left: -1px;
     line-height: 1.5;
-    color: #96673b;
+    color: #e8e8e8;
     text-decoration: none;
     background-color: #6f5e5e;
     border: 1px solid #6f5e5e;
@@ -190,8 +191,6 @@ h2{
     z-index: 2;
     color: #791d40;
     cursor: default;
-    background-color: #96673b;
+    background-color: #cea4a0;
     border-color: #d5d5d5;
-}
-
 }
