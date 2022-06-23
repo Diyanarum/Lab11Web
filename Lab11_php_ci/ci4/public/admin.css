@@ -170,6 +170,10 @@ h2{
     border-radius: .25rem;
 }
 
+.pagination > li{
+    display: inline;
+}
+
 .pagination > li > a,
 .pagination > li > span {
     position: relative;
