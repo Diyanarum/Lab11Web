@@ -863,7 +863,7 @@ Kemudian bukalah file views/artikel/admin_index.php dan tambahkan kode dibawah i
 
 Lalu tambahkan data baru dan buka kembalilah menu daftar artikel pada browser untuk melihat hasilnya.
 
-
+![menambahkan_gambar](img/TAMBAH%20DATA%2014.png)
 
 
 
