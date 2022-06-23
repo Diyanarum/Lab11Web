@@ -196,5 +196,33 @@ h2{
     color: #791d40;
     cursor: default;
     background-color: #cea4a0;
-    border-color: #d5d5d5;
+    border-color: #000000;
+}
+
+/* SEARCH */
+.form-search input[type=text]{
+    width: 50%;
+    border: 2px solid rgb(0, 0, 0);
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: 30px;
+    margin-bottom: 10px;
+}
+
+.btn-primary{
+    background-color: rgb(118, 51, 71);
+    color: rgb(39, 4, 4);
+    box-sizing: border-box;
+    font-size: 15px;
+    margin: auto;   
+}
+
+.btn-primary:active,
+.btn-primary:hover{
+    opacity: 80%;
+}
+
+/* INPUT GAMBAR */
+input[type=file]{
+    margin: 20px;
 }

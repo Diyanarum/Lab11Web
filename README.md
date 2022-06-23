@@ -848,7 +848,7 @@ public function admin_index()
         $model = new ArtikelModel();
         $data = [
             'title' => $title,
-            'artikel' => $model->paginate(10), #data dibatasi 10 record per halaman
+            'artikel' => $model->paginate(2), #data dibatasi 2 record per halaman
             'pager' => $model->pager,
         ];
         return view('artikel/admin_index', $data);
@@ -861,21 +861,106 @@ Kemudian bukalah file views/artikel/admin_index.php dan tambahkan kode dibawah i
 <?= $pager->links(); ?>
 ```
 
-Lalu tambahkan data baru dan buka kembalilah menu daftar artikel pada browser untuk melihat hasilnya.
+Lalu tambahkanlah data baru dan buka kembalilah menu daftar artikel pada browser untuk melihat hasilnya.
 
 ![menambahkan_gambar](img/TAMBAH%20DATA%2014.png)
 
+![menambahkan_gambar](img/PAGINATION%2014.png)
 
 
+## MEMBUAT PENCARIAN
+
+Sebuah pencarian data yang digunakan untuk memfilter data yang dibuat dengan cara membuka kembali pada Controller Artikel, dan mengubah sebuah kode didalam admin_index menjadi seperti ini.
+
+```php
+public function admin_index()
+{
+	 $title = 'Daftar Artikel';
+	 $q = $this->request->getVar('q') ?? '';
+	 $model = new ArtikelModel();
+	 $data = [
+	 'title' => $title,
+	 'q' => $q,
+	 'artikel' => $model->like('judul', $q)->paginate(2), # data dibatasi 2 record per halaman
+	 'pager' => $model->pager,
+	 ];
+	 return view('artikel/admin_index', $data);
+}
+```
+
+Kemudian buka kembali file views/artikel;/admin_index.php dan tambahkalan pencarian sebelum deklarasi tabel seperti berikut ini.
+
+```php
+<form method="get" class="form-search">
+   <input type="text" name="q" value="<?= $q; ?>" placeholder="Cari data">
+   <input type="submit" value="Cari" class="btn btn-primary">
+</form>
+```
+
+Dan ubahlah link pager menjadi seperti ini.
+
+```php
+<?= $pager->only(['q'])->links(); ?>
+```
+
+Maka seperti inilah tampilan yang dihasilkan.
+
+![menambahkan_gambar](img/CARI%20DATA%2014.png)
 
 
+## UPLOAD GAMBAR
 
+![menambahkan_gambar](img/MENAMBAHKAN%20GAMBAR%2014.png)
 
+Untuk menambahkan fungsi upload gambar pada tambah artikel seperti diatas, bukalah kembali Controller Artikel dan sesuaikan kodenya pada method menjadi add menjadi seperti ini.
 
+```php
+public function add()
+    {
+        // validasi data.
+        $validation = \Config\Services::validation();
+        $validation->setRules(['judul' => 'required']);
+        $isDataValid = $validation->withRequest($this->request)->run();
+        
+        if ($isDataValid)
+        {
+            $file = $this->request->getFile('gambar');
+            $file->move(ROOTPATH . 'public/gambar');
+            
+            $artikel = new ArtikelModel();
+            $artikel->insert([
+                'judul' => $this->request->getPost('judul'),
+                'isi' => $this->request->getPost('isi'),
+                'slug' => url_title($this->request->getPost('judul')),
+                'gambar' => $file->getName(),
+            ]);
+            return redirect('admin/artikel');
+        }
+        $title = "Tambah Artikel";
+        return view('artikel/form_add', compact('title'));
+    }
+```
 
+Kemudian tambahkan file input file seperti ini pada views/artikel/form_add.php
 
+```php
+<p>
+      <input type="file" name="gambar">
+ </p>
+```
 
+Sesuaikan juga tag form dengan menambahkan sebuah ecrypt type seperti berikut.
 
+```php
+<form action="" method="post" enctype="multipart/form-data">
+```
+
+# PERTANYAAN DAN TUGAS
+
+Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan
+improvisasi.
+
+![menambahkan_gambar](img/FINAL%2014.png)
 
 
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!
