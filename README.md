@@ -760,7 +760,7 @@ php spark db:seed UserSeeder
 
 Setelah menambahkan perintah tersebut bukalah browser untuk melakukan pengecekan dengan menggunakan URL http://localhost:8080/user/login seperti inilah tampilan yang dihasilkan.
 
-![menambahkan_gambar](img/LOGIN%2013.png)
+![menambahkan_gambar](img/COBA%20AKSES%2013.png)
 
 
 ## MENAMBAHKAN AUTH FILTER
@@ -830,5 +830,50 @@ Tambahkanlah method logout pada Controller User seperti berikut:
 Selesaikan programnya sesuai Langkah-langkah yang ada. Anda boleh melakukan improvisasi.
 
 ![menambahkan_gambar](img/ADMIN%2012.png)
+
+
+# PRAKTIKUM 14 
+# PAGINATION DAN PENCARIAN
+
+## PEMBUATAN PAGNATION
+
+Pagination itu sendiri merupakan proses yang digunakan untuk membatasi tampilan yang panjang dari data yang banyak pada sebuah website. Fungsi pagination juga ialah memecah tampilan menjadi beberapa halaman tergantung banyaknya data yang akan ditampilkan pada setiap halaman yang mana fungsi tersebut sudah tersedia di dalam Library pada Codeigniter 4.
+
+Untuk dapat membuatnya, silahkan buka kembali Controller Artikel, kemudia modifikasilah kode pada method admin_index seperti berikut.
+
+```php
+public function admin_index()
+    {
+        $title = 'Daftar Artikel';
+        $model = new ArtikelModel();
+        $data = [
+            'title' => $title,
+            'artikel' => $model->paginate(10), #data dibatasi 10 record per halaman
+            'pager' => $model->pager,
+        ];
+        return view('artikel/admin_index', $data);
+    }
+```
+
+Kemudian bukalah file views/artikel/admin_index.php dan tambahkan kode dibawah ini.
+
+```php
+<?= $pager->links(); ?>
+```
+
+Lalu tambahkan data baru dan buka kembalilah menu daftar artikel pada browser untuk melihat hasilnya.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # <P align="center"> THANK'S FOR YOUR ATTENTION!! SEE YOU!!

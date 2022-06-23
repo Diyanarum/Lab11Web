@@ -43,3 +43,4 @@ $row['id']);?>">Hapus</a>
 </table>
 
 <?= $this->include('template/admin_footer'); ?>
+<?= $pager->links(); ?>
